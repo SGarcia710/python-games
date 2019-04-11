@@ -1,5 +1,4 @@
 from utilities import *
-from tkinter import *
 
 class JuegoGlobos: 
   NUMERO_NIVELES = 3
@@ -23,7 +22,12 @@ class Nivel:
     self.numeroGlobos = numeroGlobos
     self.numeroGlobosRojos = numeroGlobosRojos
     self.globos = []
+    self.numeroGlobo = 0
     self.generarGlobos()
+
+  def imprimirDatos(self):
+    for globo in self.globos:
+      print(globo.color, " ", globo.x, " ", globo.y,".")
 
   def generarGlobos(self):
     i = 1
@@ -34,22 +38,22 @@ class Nivel:
       else:
         self.globos.append(Globo(Globo.AZUL))
     desordenarLista(self.globos)
-    x = 100
-    y = 100
+    XT = 200
+    x = XT
+    YT = 200
+    y = YT
     i = 1
     for globo in self.globos:
       globo.setX(x)
       globo.setY(y)
-      x += 150
+      x += 200
       i += 1
-      if i == self.numeroGlobos/2:
-        x = 100
-        y = 300
+      if i == (self.numeroGlobos/2)+1:
+        x = XT
+        y = YT + 250
 
 
 class Globo:
-  GLOBO_ROJO_IMAGEN = "assets/red.png"
-  GLOBO_AZUL_IMAGEN = "assets/blue.png"
   ROJO = "rojo"
   AZUL = "azul"
   def __init__(self, color):
@@ -57,23 +61,13 @@ class Globo:
     self.x = 0
     self.y = 0
     self.presionado = False
-    if (color == self.ROJO):
-      self.rutaGlobo = self.GLOBO_ROJO_IMAGEN
-    else:
-      self.rutaGlobo = self.GLOBO_AZUL_IMAGEN
-    
+   
   def setX(self, x):
     self.x = x
   
   def setY(self, y):
     self.y = y
-
-  def sayHello(self):
-    print("hello")
   
-
-
-
   def desactivar(self):
     self.presionado = True
 

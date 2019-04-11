@@ -1,3 +1,4 @@
-from JuegoGlobos import JuegoGlobos
+from VistaJuegoGlobos import VistaJuegosGlobos
 
-JuegoGlobos()
+# JuegoGlobos()
+VistaJuegosGlobos()
