@@ -4,19 +4,17 @@ from tkinter import *
 import tkinter.messagebox as mbox
 import time, threading
 from datetime import datetime, timedelta
-
-# mensajes = tkinter.messagebox
+from utilities import *
 
 class VistaJuegosGlobos: 
   X = 1000
   Y = 700
   
-
   def __init__(self):
     self.terminado = False
     self.pausado = False
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    self.tiempoActual = 50
+    self.tiempoActual = 0
     hilo1 = threading.Thread(target=self.contar)
     hilo1.start()
     self.juego = JuegoGlobos()
@@ -49,7 +47,6 @@ class VistaJuegosGlobos:
 
     self.root.mainloop()
   
-
   def iniciarJuego(self):
     if(self.nivelActual == 1):
       self.pintarNivel(self.juego.niveles[0])
@@ -111,7 +108,6 @@ class VistaJuegosGlobos:
     self.boton8.pack()
     self.boton8.place(anchor=CENTER, x = mGlobos[7].x, y = mGlobos[7].y)
     
-
   def accionBoton(self, globo, boton):
     if(globo.color == globo.ROJO):
       self.juego.niveles[self.nivelActual-1].globosRojosPresionados += 1
@@ -130,18 +126,16 @@ class VistaJuegosGlobos:
         totalErrores = self.juego.niveles[0].globosAzulesPresionados + self.juego.niveles[1].globosAzulesPresionados + self.juego.niveles[2].globosAzulesPresionados
         totalGanados = 10
         minutos = int(self.tiempoActual/60)
-        print(minutos)
         segundos = self.tiempoActual%60
-        print(segundos)
-        string = "Total aciertos: "+str(totalGanados)+". \nTotal Errores: "+str(totalErrores)+"\nTiempo transcurrido: "+str(minutos)+"m:"+str(segundos)+"s."
         self.terminado = True
+        string = "Total aciertos: "+str(totalGanados)+". \nTotal Errores: "+str(totalErrores)+"\nTiempo transcurrido: "+str(minutos)+"m:"+str(segundos)+"s."
         mbox.showinfo("Juego completado", string)
-        print("Nivel acabado")
+        stringResultado = "[Nivel 1] Fecha: "+self.fechaInicio+", Aciertos: "+str(totalGanados)+", Errores: "+str(totalErrores)+", Minutos: "+str(minutos)+", Segundos: "+str(segundos)+"\n"
+        guardarLog(stringResultado)
         self.root.destroy()
 
   def contar(self):
     while not self.terminado:
       if not self.pausado:
-        print(self.tiempoActual)
         time.sleep(1)
         self.tiempoActual += 1
