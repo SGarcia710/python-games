@@ -24,6 +24,8 @@ class Nivel:
     self.globos = []
     self.numeroGlobo = 0
     self.generarGlobos()
+    self.globosRojosPresionados = 0
+    self.globosAzulesPresionados = 0
 
   def imprimirDatos(self):
     for globo in self.globos:
