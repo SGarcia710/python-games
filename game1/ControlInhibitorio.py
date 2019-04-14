@@ -1,6 +1,6 @@
 from tkinter import *
 from game1.utilities import *
-from game1.VistaJuegoGlobos import *
+from game1.InstruccionesNivelUno import *
 
 class ControlInhibitorio:
   def __init__(self, menuWindow):  
@@ -23,7 +23,7 @@ class ControlInhibitorio:
     self.title.pack()
     self.title.place(anchor=CENTER, x=XY/2, y= (XY/4))
 
-    self.btn1 = Button(self.rootWindow, text="NIVEL 1", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarGlobos)
+    self.btn1 = Button(self.rootWindow, text="NIVEL 1", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarInstrucciones)
     self.btn1.pack()
     self.btn1.place(anchor=CENTER, x = (XY/2), y = (XY/2)-35, width = BTNSIZE) 
     self.btn2 = Button(self.rootWindow, text="NIVEL 2", bg = RED, fg = "white", relief = GROOVE, font=("Arial", 11))
@@ -38,9 +38,9 @@ class ControlInhibitorio:
 
     self.rootWindow.mainloop()
 
-  def iniciarGlobos(self):
+  def iniciarInstrucciones(self):
     self.rootWindow.withdraw()
-    globos = VistaJuegoGlobos(self.rootWindow)
+    globos = InstruccionesNivelUno(self.rootWindow)
 
   def volverMenu(self):
     self.rootWindow.destroy()
