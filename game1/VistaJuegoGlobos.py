@@ -1,16 +1,18 @@
-from JuegoGlobos import JuegoGlobos
+from game1.JuegoGlobos import JuegoGlobos
 from tkinter import PhotoImage
 from tkinter import *
 import tkinter.messagebox as mbox
 import time, threading
 from datetime import datetime, timedelta
-from utilities import *
+from game1.utilities import *
+from game1.ControlInhibitorio import *
 
-class VistaJuegosGlobos: 
+class VistaJuegoGlobos: 
   X = 1000
   Y = 700
   
-  def __init__(self):
+  def __init__(self, parentWindow):
+    self.parentWindow = parentWindow
     self.terminado = False
     self.pausado = False
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -18,7 +20,7 @@ class VistaJuegosGlobos:
     hilo1 = threading.Thread(target=self.contar)
     hilo1.start()
     self.juego = JuegoGlobos()
-    self.root = Tk()
+    self.root = Toplevel()
     self.root.title("Control Inihibitorio")
     self.root.config(heigh=self.Y, width=self.X)
     self.root.configure(bg='white')
@@ -32,8 +34,8 @@ class VistaJuegosGlobos:
     self.boton6 = None
     self.boton7 = None
     self.boton8 = None
-    self.blue = PhotoImage(file="blue.png")
-    self.red = PhotoImage(file="red.png")
+    self.blue = PhotoImage(file="game1/blue.png")
+    self.red = PhotoImage(file="game1/red.png")
 
     windowWidth = self.root.winfo_reqwidth()
     windowHeight = self.root.winfo_reqheight()
@@ -64,7 +66,7 @@ class VistaJuegosGlobos:
     colores = []
     for globo in nivel.globos:
       if (globo.color == globo.ROJO):
-        colores.append(self.red)       
+        colores.append(self.red)
       else:
         colores.append(self.blue)
     mGlobos = nivel.globos
@@ -117,6 +119,7 @@ class VistaJuegosGlobos:
     boton.configure(state=DISABLED)
     if(self.juego.niveles[self.nivelActual-1].globosRojosPresionados == self.juego.niveles[self.nivelActual-1].numeroGlobosRojos):
       self.pausado = True
+
       mbox.showinfo("Felicitaciones!", "Nivel terminado.")
       self.pausado = False
       self.nivelActual += 1
@@ -133,6 +136,7 @@ class VistaJuegosGlobos:
         stringResultado = "[Nivel 1] Fecha: "+self.fechaInicio+", Aciertos: "+str(totalGanados)+", Errores: "+str(totalErrores)+", Minutos: "+str(minutos)+", Segundos: "+str(segundos)+"\n"
         guardarLog(stringResultado)
         self.root.destroy()
+        self.parentWindow.deiconify()
 
   def contar(self):
     while not self.terminado:

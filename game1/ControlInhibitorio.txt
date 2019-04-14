@@ -1,1 +1,4 @@
-[Nivel 1] Fecha: 2019-04-13 17:42:30, Aciertos: 10, Errores: 2, Minutos: 0, Segundos: 7
+[Nivel 1] Fecha: 2019-04-13 19:29:48, Aciertos: 10, Errores: 4, Minutos: 0, Segundos: 6
+[Nivel 1] Fecha: 2019-04-13 19:32:38, Aciertos: 10, Errores: 4, Minutos: 0, Segundos: 7
+[Nivel 1] Fecha: 2019-04-13 19:41:25, Aciertos: 10, Errores: 1, Minutos: 0, Segundos: 13
+[Nivel 1] Fecha: 2019-04-13 19:42:18, Aciertos: 10, Errores: 4, Minutos: 0, Segundos: 18

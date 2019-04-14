@@ -1,4 +1,4 @@
-from utilities import *
+from game1.utilities import *
 
 class JuegoGlobos: 
   NUMERO_NIVELES = 3
@@ -15,7 +15,6 @@ class JuegoGlobos:
     self.niveles.append(Nivel(self.GLOBOS_ROJOS_NIVEL_1, self.NUMERO_GLOBOS))
     self.niveles.append(Nivel(self.GLOBOS_ROJOS_NIVEL_2, self.NUMERO_GLOBOS))
     self.niveles.append(Nivel(self.GLOBOS_ROJOS_NIVEL_3, self.NUMERO_GLOBOS))
-
 
 class Nivel:
   def __init__(self, numeroGlobosRojos, numeroGlobos):
@@ -54,7 +53,6 @@ class Nivel:
         x = XT
         y = YT + 250
 
-
 class Globo:
   ROJO = "rojo"
   AZUL = "azul"
@@ -69,7 +67,3 @@ class Globo:
   
   def setY(self, y):
     self.y = y
-  
-  def desactivar(self):
-    self.presionado = True
-
