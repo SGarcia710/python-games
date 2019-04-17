@@ -7,7 +7,6 @@ class JuegoLetras:
     self.nivelesJuego = []
     self.cargarNivelesJuego()
     self.indiceNivel = 0
-    self.imprimirNiveles()
 
   def cargarLetrasJuego(self):
     self.letrasJuego.append(Letra('A',Letra.VOCAL))
