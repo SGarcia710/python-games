@@ -1,6 +1,7 @@
 from tkinter import *
 from game1.utilities import *
 from game1.InstruccionesNivelUno import *
+from game1.VistaJuegoLetras import *
 
 class ControlInhibitorio:
   def __init__(self, menuWindow):  
@@ -26,7 +27,7 @@ class ControlInhibitorio:
     self.btn1 = Button(self.rootWindow, text="NIVEL 1", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarInstrucciones)
     self.btn1.pack()
     self.btn1.place(anchor=CENTER, x = (XY/2), y = (XY/2)-35, width = BTNSIZE) 
-    self.btn2 = Button(self.rootWindow, text="NIVEL 2", bg = RED, fg = "white", relief = GROOVE, font=("Arial", 11))
+    self.btn2 = Button(self.rootWindow, text="NIVEL 2", bg = RED, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarLetras)
     self.btn2.pack()
     self.btn2.place(anchor=CENTER, x = XY/2, y = XY/2, width = BTNSIZE)
     self.btn4 = Button(self.rootWindow, text="Logs", bg = DARK, fg = "white", relief = GROOVE, command = abrirArchivo)
@@ -41,6 +42,10 @@ class ControlInhibitorio:
   def iniciarInstrucciones(self):
     self.rootWindow.withdraw()
     globos = InstruccionesNivelUno(self.rootWindow)
+    
+  def iniciarLetras(self):
+    self.rootWindow.withdraw()
+    letras = VistaJuegoLetras(self.rootWindow)
 
   def volverMenu(self):
     self.rootWindow.destroy()

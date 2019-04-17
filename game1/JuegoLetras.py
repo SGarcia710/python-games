@@ -7,6 +7,7 @@ class JuegoLetras:
     self.nivelesJuego = []
     self.cargarNivelesJuego()
     self.indiceNivel = 0
+    self.imprimirNiveles()
 
   def cargarLetrasJuego(self):
     self.letrasJuego.append(Letra('A',Letra.VOCAL))
@@ -37,16 +38,23 @@ class JuegoLetras:
     self.letrasJuego.append(Letra('Z',Letra.CONSONANTE))
 
   def cargarNivelesJuego(self):
-    for i in range(1,6):
+    for i in range(1,7):
       arregloLado = [Nivel.IZQ, Nivel.DER]
       lado = arregloLado[numeroAleatorio(0,1)]
       letra = self.letrasJuego[numeroAleatorio(0,len(self.letrasJuego)-1)]
       self.nivelesJuego.append(Nivel(i, lado, letra))
   
   def obtenerNivel(self):
-    nivel = self.nivelesJuego[self.indiceNivel]
-    self.indiceNivel += 1
-    return nivel
+    if self.indiceNivel < len(self.nivelesJuego):
+      nivel = self.nivelesJuego[self.indiceNivel]
+      self.indiceNivel += 1
+      return nivel
+    else:
+      return None
+
+  def imprimirNiveles(self):
+    for nivel in self.nivelesJuego:
+      nivel.imprimirNivel()
 
 class Nivel:
   IZQ = 'I'
@@ -58,18 +66,22 @@ class Nivel:
     self.numNivel = numNivel
     self.lado = lado
     self.letra = letra
+    self.tiempoReaccion = None
     self.trampa = None
     self.calcularTrampa()
     self.botonPresionado = None
 
   def calcularTrampa(self):
     if (self.letra.tipoLetra == self.letra.VOCAL and self.lado == self.IZQ) or (self.letra.tipoLetra == self.letra.CONSONANTE and self.lado == self.DER):
-      self.trampa == False
+      self.trampa = False
     else:
-      self.trampa == True
+      self.trampa = True
 
   def presionarBoton(self,tecla):
     self.botonPresionado = tecla
+
+  def imprimirNivel(self):
+    print(str(self.numNivel)+" "+str(self.lado)+" "+self.letra.letra+" "+str(self.trampa)+" ")
 
 class Letra:
   VOCAL = 'v'
