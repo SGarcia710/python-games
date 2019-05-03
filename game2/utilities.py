@@ -23,3 +23,16 @@ def guardarLog(cadena):
 def abrirArchivo():
   string = "notepad.exe "+ archivoTXT
   os.system(string)
+
+def numSinRepetir(cant, rang):
+  numeros = []
+  for each in range(cant):
+    #aux = numeroAleatorio(0,rang)
+    pare = False
+    while(not pare):
+      aux = numeroAleatorio(0,rang)
+      if (not aux in numeros):
+        pare = True
+        numeros.append(aux)
+  return numeros
+  

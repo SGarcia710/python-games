@@ -1,0 +1,6 @@
+[Nivel 1] Fecha: 2019-05-03 01:12:15, Aciertos: 3, Errores: 2, Minutos: 0, Segundos: 8
+[Nivel 1] Fecha: 2019-05-03 01:13:05, Aciertos: 5, Errores: 0, Minutos: 0, Segundos: 14
+[Nivel 2] Fecha: 2019-05-03 01:13:23, Aciertos: 2, Errores: 4, Minutos: 0, Segundos: 7
+[Nivel 1] Fecha: 2019-05-03 01:30:57, Aciertos: 5, Errores: 0, Minutos: 0, Segundos: 9
+[Nivel 1] Fecha: 2019-05-03 01:32:34, Aciertos: 1, Errores: 4, Minutos: 0, Segundos: 4
+[Nivel 2] Fecha: 2019-05-03 01:32:59, Aciertos: 4, Errores: 2, Minutos: 0, Segundos: 3
