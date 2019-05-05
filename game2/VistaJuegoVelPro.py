@@ -17,7 +17,7 @@ class VistaJuegoVelPro:
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     self.root = Toplevel()
     self.parentWindow = parentWindow
-    self.root.title("Vel. Procesamiento")
+    self.root.title("Velocidad Procesamiento")
     self.root.config(heigh=self.Y, width=self.X)
     self.root.configure(bg='white')
     self.nivelActual = None

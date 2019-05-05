@@ -5,16 +5,12 @@ import time, threading
 from datetime import datetime, timedelta
 from game1.utilities import *
 from game1.ControlInhibitorio import *
-import time, threading
-import tkinter.messagebox as mbox
-from datetime import datetime
-import time
 
 class VistaJuegoLetras: 
   # tamaño de la ventana
   X = 1000
   Y = 700
-  TIEMPOESPERA = 4 # tiempo de espera cuando hay trampa.
+  TIEMPO_RESP = 3 # 3000ms
   def __init__(self, parentWindow):
     self.juego = JuegoLetras()
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -23,8 +19,8 @@ class VistaJuegoLetras:
     self.root.title("Control Inihibitorio")
     self.root.config(heigh=self.Y, width=self.X)
     self.root.configure(bg='white')
-    self.tiempoActual = None
     self.segundos = 0
+    self.nivelActual = None
     self.terminado = False
     self.hilo2 = threading.Thread(target=self.ejecutarCronometro)
     self.hilo2.start()
@@ -53,103 +49,55 @@ class VistaJuegoLetras:
     self.labelDer.pack()
     self.labelDer.place(anchor=CENTER, x=self.X-200, y = self.Y/2)
 
-    self.botonZ = Button(self.root, text = "Z", bd = 1, relief = GROOVE, bg = RED , fg = "white", font=("Arial", 16))
+    self.botonZ = Button(self.root, text = "Z", bd = 1, relief = GROOVE, bg = RED , fg = "white", font=("Arial", 16), command = lambda: self.accionBoton('Z'))
     self.botonZ.pack()
     self.botonZ.place(anchor=CENTER, x = 300, y = self.Y-150, width = 150, heigh = 50)
 
-    self.botonG = Button(self.root, text = "-", bd = 1, relief = GROOVE, bg = RED, fg = "white", font=("Arial", 16))
+    self.botonG = Button(self.root, text = "-", bd = 1, relief = GROOVE, bg = RED, fg = "white", font=("Arial", 16), command = lambda: self.accionBoton('-'))
     self.botonG.pack()
     self.botonG.place(anchor=CENTER, x = self.X-300, y = self.Y-150, width = 150, heigh = 50)
       
     self.pintarNivel()
 
     self.root.mainloop()
+  
+  def accionBoton(self, letra):
+    self.nivelActual.presionarBoton(letra)
+    self.reiniciar()
 
   def pintarNivel(self):
-    nivel = self.juego.obtenerNivel()
-    if nivel is None:
+    self.nivelActual = self.juego.obtenerNivel()
+    if self.nivelActual is None:
       self.terminado = True
-      cadenaLog, cadenaMsg = self.crearResultado()
-      mbox.showinfo("Juego completado!", cadenaMsg)
-      guardarLog(cadenaLog)
-      self.root.destroy()
-      self.parentWindow.deiconify()
+      self.crearResultados()
     else:
-      self.botonG.configure(command= lambda: self.presionarBoton(nivel,nivel.TECLA2))
-      self.botonZ.configure(command= lambda: self.presionarBoton(nivel,nivel.TECLA1))
-      self.tiempoActual = self.segundos
-      nivelActualStr = "Nivel " +str(nivel.numNivel)
+      nivelActualStr = "Nivel " +str(self.juego.indiceNivel )
       self.label1.config(text = nivelActualStr)
-      letraStr = nivel.letra.letra
+      letraStr = self.nivelActual.letra.letra
 
-      if nivel.lado == nivel.IZQ:
+      if self.nivelActual.lado == self.nivelActual.IZQ:
         self.labelIzq.config(text=letraStr, fg = "black")
         self.labelDer.config(text='_', fg = "white")
       else: 
         self.labelIzq.config(text='_', fg = "white")
         self.labelDer.config(text=letraStr, fg = "black")
+  
+  def crearResultados(self):
+    aciertos, fallos = self.juego.calcularResultados()
+    stringMBOX = "Total aciertos: "+str(aciertos)+". \nTotal Errores: "+str(fallos) + "."
+    mbox.showinfo("Juego completado", stringMBOX)
+    stringResultado = "[Nivel 2] Fecha: "+self.fechaInicio+", Aciertos: "+str(aciertos)+", Errores: "+str(fallos)+"\n"
+    guardarLog(stringResultado)
+    self.root.destroy()
+    self.parentWindow.deiconify()
 
-      if nivel.trampa:
-        hilo1 = threading.Thread(target=self.ejecutarPausa)
-        hilo1.start()
-
-  def ejecutarPausa(self):
-    time.sleep(self.TIEMPOESPERA)
-    self.mostrarMensaje()
-
+  def reiniciar(self):
+    self.segundos = 0
+    self.pintarNivel()
+    
   def ejecutarCronometro(self):
     while(not self.terminado):
-      time.sleep(1)
-      self.segundos += 1
-
-  def presionarBoton(self,nivel,tecla):
-    nivel.presionarBoton(tecla)
-    ahora = self.segundos
-    transcurrido = ahora - self.tiempoActual
-    nivel.tiempoReaccion = transcurrido
-
-    if not nivel.trampa:
-      self.mostrarMensaje()
-
-  def mostrarMensaje(self):
-    mbox.showinfo("Felicitaciones!", "Nivel terminado.")
-    self.pintarNivel()
-
-  def crearResultado(self):
-    cadenaLog = "[Nivel 2] Fecha: " + self.fechaInicio + ","
-    cadenaMsg = "Fecha: " + self.fechaInicio + "\n"
-    niveles = self.juego.nivelesJuego
-    for nivel in niveles:
-      tiempoR = nivel.tiempoReaccion
-      segundos = 0
-      minutos = 0
-      if tiempoR is not None:
-        segundos = tiempoR % 60
-        minutos = int(tiempoR / 60)
-      resultado = None
-      if nivel.trampa == True:
-        if nivel.botonPresionado == None:
-          resultado = "Acierto"
-        else:
-          resultado = "Error"
-      else:
-        if nivel.lado == nivel.IZQ and nivel.letra.tipoLetra == nivel.letra.VOCAL:
-          if nivel.botonPresionado == nivel.TECLA1:
-            resultado = "Acierto"
-          else:
-            resultado = "Error" 
-        else:
-          if nivel.lado == nivel.DER and nivel.letra.tipoLetra == nivel.letra.CONSONANTE:
-            if nivel.botonPresionado == nivel.TECLA2:
-              resultado = "Acierto"
-            else:
-              resultado = "Error"
-        
-      if nivel.trampa:
-        cadenaLog += " T.R." + str(nivel.numNivel) + " Minutos: 0, Segundos: 0 Resultado: " + resultado + ","
-        cadenaMsg += "T.R." + str(nivel.numNivel) + " 0:0 " + resultado + "\n"
-      else:
-        cadenaLog += " T.R." + str(nivel.numNivel) + " Minutos: " + str(minutos) + " Segundos: " + str(segundos) + " Resultado: " + resultado + ","
-        cadenaMsg += "T.R." + str(nivel.numNivel) + " " + str(minutos) + ":" + str(segundos) + " " + resultado + "\n"
-    cadenaLog = cadenaLog[0: len(cadenaLog) - 1]+"\n"
-    return cadenaLog, cadenaMsg
+      time.sleep(0.1)
+      self.segundos += 0.1
+      if self.segundos >= self.TIEMPO_RESP:
+        self.reiniciar()
