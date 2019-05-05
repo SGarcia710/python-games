@@ -28,11 +28,15 @@ class InstruccionesNivelDos:
     self.btn1.pack()
     self.btn1.place(anchor=CENTER, x = XY-55, y = XY-17, width = 105) 
 
-    string1 = "Este nivel tiene 6 secuencias, en las cuales el"
-    string2 = "jugador deberá responder con [Z] cuando la letra"
-    string3 = "corresponda a la inicial de los elementos que"
-    string4 = "aparecen en alguna de las ilustraciones o [-] en"
-    string5 = "en caso contrario."
+    self.btn5 = Button(self.rootWindow, text="Atras", bg = DARK, fg = "white", relief = GROOVE, command = self.volverMenu)
+    self.btn5.pack()
+    self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
+
+    string1 = "Este nivel tiene 6 rondas, en las cuales el"
+    string2 = "jugador deberá presionar el botón [Z] cuando"
+    string3 = "la letra corresponda a la inicial de alguno de"
+    string4 = "los elementos contenidos en cualquiera de las"
+    string5 = "tres ilustraciones o [-] en caso contrario."
     string6 = ""
 
     self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
@@ -65,3 +69,7 @@ class InstruccionesNivelDos:
   def iniciarVista(self):
     self.rootWindow.destroy()
     dos = VistaJuegoVelPro(self.parentWindow, VelocidadProcesamiento.JUEGO_DOS)
+  
+  def volverMenu(self):
+    self.rootWindow.destroy()
+    self.parentWindow.deiconify()

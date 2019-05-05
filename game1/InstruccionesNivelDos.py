@@ -27,49 +27,58 @@ class InstruccionesNivelDos:
     self.btn1.pack()
     self.btn1.place(anchor=CENTER, x = XY-55, y = XY-17, width = 105) 
 
-    self.labelcuatro = Label (self.rootWindow, text = "Este nivel tiene 6 rondas en total, en las cuales", bg = "white")
+    self.btn5 = Button(self.rootWindow, text="Atras", bg = DARK, fg = "white", relief = GROOVE, command = self.volverMenu)
+    self.btn5.pack()
+    self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
+
+    string1 = "Este nivel tiene 30 rondas. En cada ronda el"
+    string2 = "jugador deberá presionar el botón [Z] cuando una"
+    string3 = "Vocal aparezca en el recuadro izquierdo de la"
+    string4 = "pantalla. Si aparece una Consonante en el "
+    string5 = "recuadro derecho de la pantalla, deberá presionar"
+    string6 = "el botón [-]. Si la letra aparece el recuadro que"
+    string7 = "no le corresponde, el jugador deberá esperar a"
+    string8 = "que cambie a la siguiente ronda."
+
+    self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
     self.labelcuatro.config(font=("Arial", 10))
     self.labelcuatro.pack()
-    self.labelcuatro.place(anchor=W, x = 2, y = 80)
-    self.labelcinco = Label (self.rootWindow, text = "se verá en el recuadro izquierdo una Vocal y en el", bg = "white")
+    self.labelcuatro.place(anchor=W, x = 2, y = 100)
+    self.labelcinco = Label (self.rootWindow, text = string2, bg = "white")
     self.labelcinco.config(font=("Arial", 10))
     self.labelcinco.pack()
-    self.labelcinco.place(anchor=W, x = 2, y = 100)
-    self.labeluno = Label (self.rootWindow, text = "recuadro derecho una consonante. El juego", bg = "white")
+    self.labelcinco.place(anchor=W, x = 2, y = 120)
+    self.labeluno = Label (self.rootWindow, text = string3, bg = "white")
     self.labeluno.config(font=("Arial", 10))
     self.labeluno.pack()
-    self.labeluno.place(anchor=W, x = 2, y = 120)
-    self.labeldos = Label (self.rootWindow, text = "consiste en presionar el botón [Z] cuando", bg = "white")
+    self.labeluno.place(anchor=W, x = 2, y = 140)
+    self.labeldos = Label (self.rootWindow, text = string4, bg = "white")
     self.labeldos.config(font=("Arial", 10))
     self.labeldos.pack()
-    self.labeldos.place(anchor=W, x = 2, y = 140)
-    self.labeltres = Label (self.rootWindow, text = "aparezca una consonante en el lado derecho y el", bg = "white")
+    self.labeldos.place(anchor=W, x = 2, y = 160)
+    self.labeltres = Label (self.rootWindow, text = string5, bg = "white")
     self.labeltres.config(font=("Arial", 10))
     self.labeltres.pack()
-    self.labeltres.place(anchor=W, x = 2, y = 160)
-    self.labelseis = Label (self.rootWindow, text = "botón [-] cuando aparezca una vocal en el lado", bg = "white")
+    self.labeltres.place(anchor=W, x = 2, y = 180)
+    self.labelseis = Label (self.rootWindow, text = string6, bg = "white")
     self.labelseis.config(font=("Arial", 10))
     self.labelseis.pack()
-    self.labelseis.place(anchor=W, x = 2, y = 180)
-    self.labelsiete = Label (self.rootWindow, text = "izquierdo. Si la letra aparece en el lado contrario", bg = "white")
+    self.labelseis.place(anchor=W, x = 2, y = 200)
+    self.labelsiete = Label (self.rootWindow, text = string7, bg = "white")
     self.labelsiete.config(font=("Arial", 10))
     self.labelsiete.pack()
-    self.labelsiete.place(anchor=W, x = 2, y = 200)
-    self.labelocho = Label (self.rootWindow, text = "se debe esperar (4) segundos sin presionar", bg = "white")
+    self.labelsiete.place(anchor=W, x = 2, y = 220)
+    self.labelocho = Label (self.rootWindow, text = string8, bg = "white")
     self.labelocho.config(font=("Arial", 10))
     self.labelocho.pack()
-    self.labelocho.place(anchor=W, x = 2, y = 220)
-    self.labelnueve = Label (self.rootWindow, text = "ningún botón, de lo contrario será contado como", bg = "white")
-    self.labelnueve.config(font=("Arial", 10))
-    self.labelnueve.pack()
-    self.labelnueve.place(anchor=W, x = 2, y = 240)
-    self.labeldiez = Label (self.rootWindow, text = "un error.", bg = "white")
-    self.labeldiez.config(font=("Arial", 10))
-    self.labeldiez.pack()
-    self.labeldiez.place(anchor=W, x = 2, y = 260)
+    self.labelocho.place(anchor=W, x = 2, y = 240)
 
     self.rootWindow.mainloop()
   
   def iniciarLetras(self):
     self.rootWindow.destroy()
     letras = VistaJuegoLetras(self.parentWindow)
+    
+  def volverMenu(self):
+    self.rootWindow.destroy()
+    self.parentWindow.deiconify()

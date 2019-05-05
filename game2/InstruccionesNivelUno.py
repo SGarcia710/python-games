@@ -28,10 +28,14 @@ class InstruccionesNivelUno:
     self.btn1.pack()
     self.btn1.place(anchor=CENTER, x = XY-55, y = XY-17, width = 105) 
 
-    string1 = "Este nivel tiene 5 secuencias, en las cuales el "
-    string2 = "jugador deberá responder con [Z] cuando el Emoji"
-    string3 = "aparezca en alguna de las ilustraciones o [-] en"
-    string4 = "caso contrario."
+    self.btn5 = Button(self.rootWindow, text="Atras", bg = DARK, fg = "white", relief = GROOVE, command = self.volverMenu)
+    self.btn5.pack()
+    self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
+
+    string1 = "Este nivel tiene 5 rondas, en las cuales el"
+    string2 = "jugador deberá presionar el botón [Z] cuando"
+    string3 = "el Emoji aparezca en alguna de las tres "
+    string4 = "ilustraciones o [-] en caso contrario."
     string5 = ""
     string6 = ""
 
@@ -65,3 +69,7 @@ class InstruccionesNivelUno:
   def iniciarVista(self):
     self.rootWindow.destroy()
     uno = VistaJuegoVelPro(self.parentWindow, VelocidadProcesamiento.JUEGO_UNO)
+
+  def volverMenu(self):
+    self.rootWindow.destroy()
+    self.parentWindow.deiconify()
