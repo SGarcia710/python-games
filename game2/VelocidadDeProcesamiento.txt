@@ -1,0 +1,2 @@
+[Nivel 1] Fecha: 2019-05-14 20:24:02, Aciertos: 3, Errores: 2, Minutos: 0, Segundos: 6
+[Nivel 2] Fecha: 2019-05-14 20:24:15, Aciertos: 2, Errores: 4, Minutos: 0, Segundos: 7
