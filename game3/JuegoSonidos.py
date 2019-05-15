@@ -27,18 +27,24 @@ class JuegoSonidos:
                 caracteristicas = ruta.split(".")[0].split(",")
                 palabra = caracteristicas[0]
                 esMonosilaba = True if caracteristicas[1] == 'si' else False
-                nivelPalabra = int(caracteristicas[2])
-                self.sonidos.append(Sonido(ruta, palabra, esMonosilaba, nivelPalabra))
+                self.sonidos.append(Sonido(ruta, palabra, esMonosilaba))
 
     def cargarNiveles(self):
         f = open(self.RUTA_CONFIG, "r")
-        print(f.readline())
+        linea = f.readline()
+        while linea is not None:
+            linea = linea.split(";")
+            numNivel = int(linea[0].split("=")[1])
+            sonidosTexto = linea[1].split("=")[1].split(",")
+            sonidosFiltrados = [sonido for sonido in sonidos if sonido.palabra in sonidosTexto]
+            self.niveles.append(Nivel(numNivel, sonidosFiltrados))
+            linea = f.readline()
 
 class Nivel:
 
     def __init__(self, numNivel, sonidos):
-        self.sonidos = sonidos
         self.numNivel = numNivel
+        self.sonidos = sonidos
         self.nivelCorrecto = None
         self.sonidoActual = 0
 
@@ -57,14 +63,13 @@ class Nivel:
             return None
 
     def elSonidoEsCorrecto(self, palabra):
-        sNivel = sonidos[sNivel for sNivel in sonidos if sNivel.sonido.palabra = palabra]
+        sNivel = sonidos[sNivel for sNivel in sonidos if sNivel.palabra = palabra]
         sonidoNivel = self.__obtenerSonidoNivel()
         return True if sNivel == sonidoNivel else False
 
 class Sonido:
 
-    def __init__(self, ruta, palabra, esMonosilaba, nivelPalabra):
+    def __init__(self, ruta, palabra, esMonosilaba):
         self.ruta = ruta
         self.palabra = palabra
         self.esMonosilaba = esMonosilaba
-        self.nivelPalabra = nivelPalabra

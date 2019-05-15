@@ -1,6 +1,6 @@
-1,numeroMonosilabas=3,nivelInferior=1,nivelSuperior=1,numeroPalabras=3
-2,numeroMonosilabas=3,nivelInferior=1,nivelSuperior=1,numeroPalabras=3
-3,numeroMonosilabas=1,nivelInferior=1,nivelInferior=2,numeroPalabras=4
-4,numeroMonosilabas=1,nivelInferior=1,nivelInferior=2,numeroPalabras=4
-5,numeroMonosilabas=0,nivelInferior=2,nivelInferior=3,numeroPalabras=8
-6,numeroMonosilabas=0,nivelInferior=3,nivelInferior=3,numeroPalabras=8
+nivel=1;palabras=Alicate,Audifonos,Avioneta
+nivel=2;palabras=Avioneta,Audifonos,Alicate
+nivel=3;palabras=Alicate,Audifonos,Avioneta
+nivel=4;palabras=Avioneta,Audifonos,Alicate
+nivel=5;palabras=Alicate,Audifonos,Avioneta
+nivel=6;palabras=Avioneta,Audifonos,Alicate
