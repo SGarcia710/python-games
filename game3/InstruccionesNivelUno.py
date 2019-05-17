@@ -19,7 +19,7 @@ class InstruccionesNivelUno:
 
     self.rootWindow.geometry("+{}+{}".format(self.positionRight, self.positionDown))
 
-    self.title = Label(self.rootWindow, text = "INSTRUCCIONES NIVEL 1", bg = "white")
+    self.title = Label(self.rootWindow, text = "INSTRUCCIONES", bg = "white")
     self.title.config(font=("Righteous", 15))
     self.title.pack()
     self.title.place(anchor=CENTER, x=XY/2, y= (XY/8))
@@ -32,12 +32,13 @@ class InstruccionesNivelUno:
     self.btn5.pack()
     self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
 
-    string1 = "Este nivel tiene 5 rondas, en las cuales el"
-    string2 = "jugador deberá presionar el botón [Z] cuando"
-    string3 = "el Emoji aparezca en alguna de las tres "
-    string4 = "ilustraciones o [-] en caso contrario."
-    string5 = ""
-    string6 = ""
+    string1 = "Este juego cuenta con 6 niveles de dificultad"
+    string2 = "el los cuales el jugador deberá escuchar la"
+    string3 = "secuencia de audios dando al boton"
+    string4 = "REPRODUCIR. Una vez escuchada toda la "
+    string5 = "sencuencia, debe dar clic a los botones que "
+    string6 = "tienen las palabras, en el mismo orden que "
+    string7 = "fueron escuchadas."
 
     self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
     self.labelcuatro.config(font=("Arial", 10))
@@ -63,6 +64,10 @@ class InstruccionesNivelUno:
     self.labelseis.config(font=("Arial", 10))
     self.labelseis.pack()
     self.labelseis.place(anchor=W, x = 2, y = 200)
+    self.labelsiete = Label (self.rootWindow, text = string7, bg = "white")
+    self.labelsiete.config(font=("Arial", 10))
+    self.labelsiete.pack()
+    self.labelsiete.place(anchor=W, x = 2, y = 220)
 
     self.rootWindow.mainloop()
   
