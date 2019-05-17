@@ -52,21 +52,21 @@ class VistaMemoriaTrabajoFonologica:
 
     self.botones = []
 
-    self.botonUno = Button(self.root, text = "Boton Uno", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.cambiarNivel)
+    self.botonUno = Button(self.root, text = "Boton Uno", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonUno))
 
-    self.botonDos = Button(self.root, text = "Boton Dos", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonDos = Button(self.root, text = "Boton Dos", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonDos))
 
-    self.botonTres = Button(self.root, text = "Boton Tres", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonTres = Button(self.root, text = "Boton Tres", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonTres))
 
-    self.botonCuatro = Button(self.root, text = "Boton Cuatro", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonCuatro = Button(self.root, text = "Boton Cuatro", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonCuatro))
 
-    self.botonCinco = Button(self.root, text = "Boton Cinco", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonCinco = Button(self.root, text = "Boton Cinco", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonCinco))
 
-    self.botonSeis = Button(self.root, text = "Boton Seis", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonSeis = Button(self.root, text = "Boton Seis", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonSeis))
 
-    self.botonSiete = Button(self.root, text = "Boton Siete", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonSiete = Button(self.root, text = "Boton Siete", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonSiete))
 
-    self.botonOcho = Button(self.root, text = "Boton Ocho", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
+    self.botonOcho = Button(self.root, text = "Boton Ocho", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonOcho))
 
     self.botones.append(self.botonUno)
     self.botones.append(self.botonDos)
@@ -86,6 +86,7 @@ class VistaMemoriaTrabajoFonologica:
     if self.nivelActual is None:
       self.terminado = True
     else:
+      self.opcionBotones(1)
       self.label1.configure(text="Nivel " + str(self.nivelActual.numNivel))
       self.btnReproducir.config(state="normal")
       self.pintarPalabrasEnBotones()
@@ -150,8 +151,21 @@ class VistaMemoriaTrabajoFonologica:
       palabra = palabras[i]
       self.botones[i].config(text = palabra)
 
-  def cambiarNivel(self):
-    self.pintarNivel()
+  def cambiarNivel(self, boton):
+    palabra = boton["text"]
+    if self.nivelActual.sonidoFinal():
+      if self.nivelActual.elSonidoEsCorrecto(palabra):
+        self.nivelActual.calificarNivel(True)
+      else:
+        self.nivelActual.calificarNivel(False)
+      self.pintarNivel()
+    else:
+      if not self.nivelActual.elSonidoEsCorrecto(palabra):
+        print("el sonido es incorrecto")
+        self.nivelActual.calificarNivel(False)
+        self.pintarNivel()
+
+      
 
   def ejecutarCronometro(self):
     while(not self.terminado):

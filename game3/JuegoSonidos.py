@@ -63,9 +63,9 @@ class Nivel:
         self.nivelCorrecto = nivelCorrecto
 
     def sonidoFinal(self):
-        return True if self.sonidoActual == ((self.sonidos) -1) else False
+        return True if self.sonidoActual == (len(self.sonidos) -1) else False
 
-    def __obtenerSonidoNivel(self):
+    def obtenerSonidoNivel(self):
         if self.sonidoActual < len(self.sonidos):
             sonido = self.sonidos[self.sonidoActual]
             self.sonidoActual += 1
@@ -74,8 +74,11 @@ class Nivel:
             return None
 
     def elSonidoEsCorrecto(self, palabra):
-        sNivel = [sNivel for sNivel in self.sonidos if sNivel.palabra == palabra]
-        sonidoNivel = self.__obtenerSonidoNivel()
+        sNivel = None
+        for sonido in self.sonidos:
+            if sonido.palabra == palabra:
+                sNivel = sonido
+        sonidoNivel = self.obtenerSonidoNivel()
         return True if sNivel == sonidoNivel else False
 
 class Sonido:
