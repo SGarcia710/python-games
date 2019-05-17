@@ -7,7 +7,7 @@ BLUE = "#01CBCF"
 RED = "#f96262"
 GREEN = "#0ce59a"
 DARK = "#404e67"
-archivoTXT = "game3/VelocidadDeProcesamiento.txt"
+archivoTXT = "game3/MemoriaTrabajoFonologica.txt"
 
 def numeroAleatorio(x, y):
   return random.randint(x,y)
