@@ -85,6 +85,7 @@ class VistaMemoriaTrabajoFonologica:
     self.nivelActual = self.juego.obtenerNivel()
     if self.nivelActual is None:
       self.terminado = True
+      self.crearResultados()
     else:
       self.opcionBotones(1)
       self.label1.configure(text="Nivel " + str(self.nivelActual.numNivel))
@@ -168,10 +169,19 @@ class VistaMemoriaTrabajoFonologica:
         print("el sonido es incorrecto")
         self.nivelActual.calificarNivel(False)
         self.pintarNivel()
-
-      
-
+    
   def ejecutarCronometro(self):
     while(not self.terminado):
       time.sleep(1)
       self.segundos += 1
+
+  def crearResultados(self):
+    segundos = self.segundos % 60
+    minutos = int(self.segundos / 60)
+    aciertos, fallos = self.juego.calcularResultados()
+    stringMBOX = "Total aciertos: "+str(aciertos)+". \nTotal Errores: "+str(fallos)+"\nTiempo transcurrido: "+str(minutos)+"m:"+str(segundos)+"s."
+    mbox.showinfo("Juego completado", stringMBOX)
+    stringResultado = "[Nivel "+ str(self.juego.tipoJuego) +"] Fecha: "+self.fechaInicio+", Aciertos: "+str(aciertos)+", Errores: "+str(fallos)+", Minutos: "+str(minutos)+", Segundos: "+str(segundos)+"\n"
+    guardarLog(stringResultado)
+    self.root.destroy()
+    self.parentWindow.deiconify()
