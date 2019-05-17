@@ -1,6 +1,7 @@
-nivel=1;palabras=Alicate,Audifonos,Avioneta
-nivel=2;palabras=Avioneta,Audifonos,Alicate
-nivel=3;palabras=Alicate,Audifonos,Avioneta
-nivel=4;palabras=Avioneta,Audifonos,Alicate
-nivel=5;palabras=Alicate,Audifonos,Avioneta
-nivel=6;palabras=Avioneta,Audifonos,Alicate
+niveles=6
+nivel=1;palabras=Paz,Fe,Sol,Perro
+nivel=2;palabras=Perro,Sol,Fe,Paz
+nivel=3;palabras=Ropero,Cuaderno,Gato,Audifonos,Avioneta,Caminata
+nivel=4;palabras=Caminata,Avioneta,Gato,Cuaderno,Ropero
+nivel=5;palabras=Maniobra,Zanahoria,Ventilador,Televisor,Memoria,Computador,Camiseta,Celular
+nivel=6;palabras=Celular,Camiseta,Computador,Memoria,Televisor,Ventilador,Zanahoria,Maniobra

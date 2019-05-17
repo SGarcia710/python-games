@@ -2,7 +2,7 @@ from tkinter import *
 from config import *
 from game1.ControlInhibitorio import ControlInhibitorio
 from game2.VelocidadProcesamiento import VelocidadProcesamiento
-
+from game3.MemoriaTrabajoFonologica import MemoriaTrabajoFonologica
 class Juegos:
   def __init__(self):
     self.rootWindow = Tk()
@@ -30,7 +30,7 @@ class Juegos:
     btn2 = Button(self.rootWindow, text="Velocidad de Procesamiento", bg = RED, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarVelocidadP)
     btn2.pack()
     btn2.place(anchor=CENTER, x = XY/2, y = XY/2, width = BTNSIZE)
-    btn3 = Button(self.rootWindow, text="Memoria de Trabajo Fonológica", bg = GREEN, fg = "white", relief = GROOVE, font=("Arial", 11))
+    btn3 = Button(self.rootWindow, text="Memoria de Trabajo Fonológica", bg = GREEN, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarMemFono)
     btn3.pack()
     btn3.place(anchor=CENTER, x = (XY/2), y = (XY/2)+35, width = BTNSIZE )
 
@@ -42,4 +42,8 @@ class Juegos:
   
   def iniciarVelocidadP(self):
     self.rootWindow.withdraw()
-    velP = VelocidadProcesamiento(self.rootWindow) 
+    velP = VelocidadProcesamiento(self.rootWindow)
+
+  def iniciarMemFono(self):
+    self.rootWindow.withdraw()
+    mf = MemoriaTrabajoFonologica(self.rootWindow)
