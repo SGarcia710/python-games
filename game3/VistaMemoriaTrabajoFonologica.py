@@ -108,6 +108,10 @@ class VistaMemoriaTrabajoFonologica:
       self.botonSeis.pack()
       self.botonSeis.place(anchor=CENTER, x=(self.X/2)+80, y = 450, width = 150, heigh = 30)
     elif self.nivelActual.numNivel in [5,6]:
+      self.botonCinco.pack()
+      self.botonCinco.place(anchor=CENTER, x=(self.X/2)-240, y = 450, width = 150, heigh = 30)
+      self.botonSeis.pack()
+      self.botonSeis.place(anchor=CENTER, x=(self.X/2)-80, y = 450, width = 150, heigh = 30)
       self.botonSiete.pack()
       self.botonSiete.place(anchor=CENTER, x=(self.X/2)+80, y = 450, width = 150, heigh = 30)
       self.botonOcho.pack()
