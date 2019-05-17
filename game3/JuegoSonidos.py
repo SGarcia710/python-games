@@ -37,13 +37,14 @@ class JuegoSonidos:
         while i < niveles:
             i += 1
             linea = f.readline()
-            console.log(linea)
             linea = linea.split(";")
             numNivel = int(linea[0].split("=")[1])
             sonidosTexto = linea[1].split("=")[1].split(",")
-            sonidoFinal = sonidosTexto[len(sonidosTexto)-1]
-            sonidoFinal = sonidoFinal[0 : (len(sonidoFinal)-3)]
-            sonidosFiltrados = [sonido for sonido in self.sonidos if sonido.palabra in sonidosTexto]
+            sonidosFiltrados = []
+            for sn in sonidosTexto:
+                for sonido in self.sonidos:
+                    if sonido.palabra in sn:
+                        sonidosFiltrados.append(sonido)
             self.niveles.append(Nivel(numNivel, sonidosFiltrados))
 
 class Nivel:

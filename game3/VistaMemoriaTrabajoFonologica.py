@@ -7,12 +7,15 @@ from datetime import datetime, timedelta
 from game3.utilities import *
 import os
 from pygame import mixer
+from tinytag import TinyTag
+import math
 
 class VistaMemoriaTrabajoFonologica: 
   # tamaño de la ventana
   X = 800
   Y = 500
   def __init__(self, parentWindow):
+    mixer.init()
     self.juego = JuegoSonidos()
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     self.root = Toplevel()
@@ -24,6 +27,7 @@ class VistaMemoriaTrabajoFonologica:
     self.segundos = 0
     self.terminado = False
     self.root.resizable(width=False, height=False)
+    self.hilo2 = None
 
     windowWidth = self.root.winfo_reqwidth()
     windowHeight = self.root.winfo_reqheight()
@@ -39,15 +43,14 @@ class VistaMemoriaTrabajoFonologica:
     self.label1.pack()
     self.label1.place(anchor=CENTER, x=self.X/2, y= 50)
 
-    self.btnReproducir = Button(self.root, text = "Reproducir", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 16),command= self.reproducir)
+    self.btnReproducir = Button(self.root, text = "Reproducir", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 16),command= self.iniciarHilo)
     self.btnReproducir.pack()
     self.btnReproducir.place(anchor=CENTER, x=self.X/2, y = 200, width = 150, heigh = 50)
     self.btnReproducir.config(state="normal")
 
     self.botones = []
 
-    self.botonUno = Button(self.root, text = "Boton Uno", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
-
+    self.botonUno = Button(self.root, text = "Boton Uno", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.cambiarNivel)
 
     self.botonDos = Button(self.root, text = "Boton Dos", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
 
@@ -63,6 +66,15 @@ class VistaMemoriaTrabajoFonologica:
 
     self.botonOcho = Button(self.root, text = "Boton Ocho", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= self.reproducir)
 
+    self.botones.append(self.botonUno)
+    self.botones.append(self.botonDos)
+    self.botones.append(self.botonTres)
+    self.botones.append(self.botonCuatro)
+    self.botones.append(self.botonCinco)
+    self.botones.append(self.botonSeis)
+    self.botones.append(self.botonSiete)
+    self.botones.append(self.botonOcho)
+
     self.pintarNivel()
 
     self.root.mainloop()
@@ -74,6 +86,7 @@ class VistaMemoriaTrabajoFonologica:
     else:
       self.label1.configure(text="Nivel " + str(self.nivelActual.numNivel))
       self.btnReproducir.config(state="normal")
+      self.pintarPalabrasEnBotones()
       self.pintarBotones()
 
   def pintarBotones(self):
@@ -99,11 +112,41 @@ class VistaMemoriaTrabajoFonologica:
     else:
       print("Pendiente")
 
+
+  def iniciarHilo(self):
+    self.hilo2 = threading.Thread(target=self.reproducir)
+    self.hilo2.start()
+
   def reproducir(self):
-    self.btnReproducir.config(state="disabled")
-    mixer.init()
-    for sonido in self.nivelActual.sonidos:
-      mixer.music.load(sonido.ruta)
-      mixer.music.play()
-      time.sleep(2)
+    self.terminado = False
+    while(not self.terminado):
+      self.opcionBotones(1)
+      self.btnReproducir.config(state="disabled")
+      for sonido in self.nivelActual.sonidos:
+        mixer.music.load(sonido.ruta)
+        tag = TinyTag.get(sonido.ruta)
+        mixer.music.play()
+        time.sleep(math.ceil(tag.duration))
+      self.terminado = True
+      self.opcionBotones(2)
+
+  def opcionBotones(self, opcion):
+    if opcion == 1:
+      for i in range(0, len(self.nivelActual.sonidos)):
+        self.botones[i].config(state="disabled")
+    else:
+      for i in range(0, len(self.nivelActual.sonidos)):
+        self.botones[i].config(state="normal")
+
+  def pintarPalabrasEnBotones(self):
+    palabras = []
+    for i in range(0, len(self.nivelActual.sonidos)):
+      palabra = self.nivelActual.sonidos[i].palabra
+      palabras.append(palabra)
+    desordenarLista(palabras)
+    for i in range(0, len(palabras)):
+      palabra = palabras[i]
+      self.botones[i].config(text = palabra)
+
+  def cambiarNivel(self):
     self.pintarNivel()
