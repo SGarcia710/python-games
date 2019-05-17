@@ -25,7 +25,7 @@ class VistaMemoriaTrabajoFonologica:
     self.root.configure(bg='white')
     self.nivelActual = None
     self.segundos = 0
-    self.terminado = False
+    self.terminado2 = False
     self.root.resizable(width=False, height=False)
     self.hilo3 = threading.Thread(target=self.ejecutarCronometro)
     self.hilo3.start()
@@ -84,7 +84,7 @@ class VistaMemoriaTrabajoFonologica:
   def pintarNivel(self):
     self.nivelActual = self.juego.obtenerNivel()
     if self.nivelActual is None:
-      self.terminado = True
+      self.terminado2 = True
       self.crearResultados()
     else:
       self.opcionBotones(1)
@@ -171,7 +171,7 @@ class VistaMemoriaTrabajoFonologica:
         self.pintarNivel()
     
   def ejecutarCronometro(self):
-    while(not self.terminado):
+    while(not self.terminado2):
       time.sleep(1)
       self.segundos += 1
 
@@ -179,9 +179,9 @@ class VistaMemoriaTrabajoFonologica:
     segundos = self.segundos % 60
     minutos = int(self.segundos / 60)
     aciertos, fallos = self.juego.calcularResultados()
-    stringMBOX = "Total aciertos: "+str(aciertos)+". \nTotal Errores: "+str(fallos)+"\nTiempo transcurrido: "+str(minutos)+"m:"+str(segundos)+"s."
+    stringMBOX = "Total aciertos: "+str(aciertos)+". \nTotal Errores: "+str(fallos)+".\nTiempo transcurrido: "+str(minutos)+"m:"+str(segundos)+"s."
     mbox.showinfo("Juego completado", stringMBOX)
-    stringResultado = "[Nivel "+ str(self.juego.tipoJuego) +"] Fecha: "+self.fechaInicio+", Aciertos: "+str(aciertos)+", Errores: "+str(fallos)+", Minutos: "+str(minutos)+", Segundos: "+str(segundos)+"\n"
+    stringResultado = "Fecha: "+self.fechaInicio+", Aciertos: "+str(aciertos)+", Errores: "+str(fallos)+", Minutos: "+str(minutos)+", Segundos: "+str(segundos)+"\n"
     guardarLog(stringResultado)
     self.root.destroy()
     self.parentWindow.deiconify()

@@ -14,7 +14,8 @@ class JuegoSonidos:
         self.cargarNiveles()
 
     def calcularResultados(self):
-        aciertos, errores = 0
+        aciertos = 0
+        errores = 0
         for nivel in self.niveles:
             if nivel.nivelCorrecto:
                 aciertos += 1
