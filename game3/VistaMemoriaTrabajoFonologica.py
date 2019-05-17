@@ -27,6 +27,8 @@ class VistaMemoriaTrabajoFonologica:
     self.segundos = 0
     self.terminado = False
     self.root.resizable(width=False, height=False)
+    self.hilo3 = threading.Thread(target=self.ejecutarCronometro)
+    self.hilo3.start()
     self.hilo2 = None
 
     windowWidth = self.root.winfo_reqwidth()
@@ -82,7 +84,7 @@ class VistaMemoriaTrabajoFonologica:
   def pintarNivel(self):
     self.nivelActual = self.juego.obtenerNivel()
     if self.nivelActual is None:
-      print("pendiente")
+      self.terminado = True
     else:
       self.label1.configure(text="Nivel " + str(self.nivelActual.numNivel))
       self.btnReproducir.config(state="normal")
@@ -150,3 +152,8 @@ class VistaMemoriaTrabajoFonologica:
 
   def cambiarNivel(self):
     self.pintarNivel()
+
+  def ejecutarCronometro(self):
+    while(not self.terminado):
+      time.sleep(1)
+      self.segundos += 1
