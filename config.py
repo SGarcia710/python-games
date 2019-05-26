@@ -1,7 +1,8 @@
 #Constantes del Frame principal.
 XY = 300
 BTNSIZE = 210
-BLUE = "#01CBCF"
-RED = "#f96262"
-GREEN = "#0ce59a"
+BLUE = "#2e86de"
+MANDARINRED = "#e55039"
+AURORAGREEN = "#1dd1a1"
 DARK = "#404e67"
+JALAPENORED = "#b71540"

@@ -3,6 +3,8 @@ from config import *
 from game1.ControlInhibitorio import ControlInhibitorio
 from game2.VelocidadProcesamiento import VelocidadProcesamiento
 from game3.MemoriaTrabajoFonologica import MemoriaTrabajoFonologica
+from game4.FlexibilidadCognitiva import FlexibilidadCognitiva
+
 class Juegos:
   def __init__(self):
     self.rootWindow = Tk()
@@ -27,12 +29,15 @@ class Juegos:
     btn1 = Button(self.rootWindow, text="Control Inhibitorio", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarControlI)
     btn1.pack()
     btn1.place(anchor=CENTER, x = (XY/2), y = (XY/2)-35, width = BTNSIZE) 
-    btn2 = Button(self.rootWindow, text="Velocidad de Procesamiento", bg = RED, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarVelocidadP)
+    btn2 = Button(self.rootWindow, text="Velocidad de Procesamiento", bg = MANDARINRED, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarVelocidadP)
     btn2.pack()
     btn2.place(anchor=CENTER, x = XY/2, y = XY/2, width = BTNSIZE)
-    btn3 = Button(self.rootWindow, text="Memoria de Trabajo Fonológica", bg = GREEN, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarMemFono)
+    btn3 = Button(self.rootWindow, text="Memoria de Trabajo Fonológica", bg = AURORAGREEN, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarMemFono)
     btn3.pack()
     btn3.place(anchor=CENTER, x = (XY/2), y = (XY/2)+35, width = BTNSIZE )
+    btn3 = Button(self.rootWindow, text="Flexibilidad Cognitiva", bg = JALAPENORED, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarFlexCogni)
+    btn3.pack()
+    btn3.place(anchor=CENTER, x = (XY/2), y = (XY/2)+35+35, width = BTNSIZE )
 
     self.rootWindow.mainloop()
 
@@ -47,3 +52,7 @@ class Juegos:
   def iniciarMemFono(self):
     self.rootWindow.withdraw()
     mf = MemoriaTrabajoFonologica(self.rootWindow)
+
+  def iniciarFlexCogni(self):
+    self.rootWindow.withdraw()
+    fc = FlexibilidadCognitiva(self.rootWindow)

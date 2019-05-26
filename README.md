@@ -2,11 +2,12 @@
 
 ## Versión de Python
 
-* Python 3.6.8
+* Python 3
 
 ## Librerias
 
-
+* Tinytag
+* PyGame
 
 ## Dependencias de terceros
 
