@@ -20,7 +20,7 @@ class VistaMemoriaTrabajoFonologica:
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     self.root = Toplevel()
     self.parentWindow = parentWindow
-    self.root.title("Velocidad Procesamiento")
+    self.root.title("MEM. T. FONOLÓGICA.")
     self.root.config(heigh=self.Y, width=self.X)
     self.root.configure(bg='white')
     self.nivelActual = None

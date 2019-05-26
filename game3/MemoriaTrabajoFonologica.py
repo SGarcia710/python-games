@@ -6,7 +6,7 @@ class MemoriaTrabajoFonologica:
   def __init__(self, menuWindow):  
     self.menuWindow = menuWindow
     self.rootWindow = Tk()
-    self.rootWindow.title("MEM. T. FONOLOGICA.")
+    self.rootWindow.title("MEM. T. FONOLÓGICA.")
     self.rootWindow.config(heigh=XY, width=XY)
     self.rootWindow.configure(bg='white')
 
