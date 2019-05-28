@@ -1,0 +1,4 @@
+game4/assets/images/triangulo,rojo,1.PNG
+game4/assets/images/estrella,verde,2.PNG
+game4/assets/images/cruz,amarillo,3.PNG
+game4/assets/images/circulo,azul,4.PNG
