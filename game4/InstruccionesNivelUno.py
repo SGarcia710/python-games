@@ -1,6 +1,6 @@
 from tkinter import *
 from game4.utilities import *
-# from game4.VistaCartas import *
+from game4.VistaCartas import *
 # from game4.JuegoCartas import *
 
 class InstruccionesNivelUno:
@@ -68,7 +68,7 @@ class InstruccionesNivelUno:
   
   def iniciarVista(self):
     self.rootWindow.destroy()
-    # uno = VistaJuegoVelPro(self.parentWindow, VelocidadProcesamiento.JUEGO_UNO)
+    uno = VistaCartas(self.parentWindow)
 
   def volverMenu(self):
     self.rootWindow.destroy()
