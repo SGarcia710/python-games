@@ -25,20 +25,20 @@ class Nivel:
     self.cartasWisconsin = cartasWisconsin
 
 class Carta: 
-  F_TRIANGULO = 1
-  F_ESTRELLA = 2
-  F_CRUZ = 3
-  F_CIRCULO = 4
+  F_TRIANGULO = "triangulo"
+  F_ESTRELLA = "estrella"
+  F_CRUZ = "cruz"
+  F_CIRCULO = "circulo"
 
-  C_AMARILLO = 1
-  C_ROJO = 2
-  C_VERDE = 3
-  C_AZUL = 4
+  C_AMARILLO = "amarillo"
+  C_ROJO = "rojo"
+  C_VERDE = "verde"
+  C_AZUL = "azul"
 
-  CN_UNO = 1
-  CN_DOS = 2
-  CN_TRES = 3
-  CN_CUATRO = 4
+  CN_UNO = "uno"
+  CN_DOS = "dos"
+  CN_TRES = "tres"
+  CN_CUATRO = "cuatro"
     def __init__(self, forma, color, cantidad):
       self.forma = forma
       self.color = color
