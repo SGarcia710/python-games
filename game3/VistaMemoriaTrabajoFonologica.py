@@ -14,6 +14,9 @@ class VistaMemoriaTrabajoFonologica:
   # tamaño de la ventana
   X = 800
   Y = 500
+  FUENTE = 15
+  HEIGHB = 35
+  CBANANA = "#FF9800"
   def __init__(self, parentWindow):
     mixer.init()
     self.juego = JuegoSonidos()
@@ -45,28 +48,28 @@ class VistaMemoriaTrabajoFonologica:
     self.label1.pack()
     self.label1.place(anchor=CENTER, x=self.X/2, y= 50)
 
-    self.btnReproducir = Button(self.root, text = "Reproducir", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 16),command= self.iniciarHilo)
+    self.btnReproducir = Button(self.root, text = "Reproducir", bd = 1, relief = GROOVE, bg = "#b71540" , fg = "white", font=("Arial", 16),command= self.iniciarHilo)
     self.btnReproducir.pack()
     self.btnReproducir.place(anchor=CENTER, x=self.X/2, y = 200, width = 150, heigh = 50)
     self.btnReproducir.config(state="normal")
 
     self.botones = []
 
-    self.botonUno = Button(self.root, text = "Boton Uno", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonUno))
+    self.botonUno = Button(self.root, text = "Boton Uno", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonUno))
 
-    self.botonDos = Button(self.root, text = "Boton Dos", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonDos))
+    self.botonDos = Button(self.root, text = "Boton Dos", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonDos))
 
-    self.botonTres = Button(self.root, text = "Boton Tres", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonTres))
+    self.botonTres = Button(self.root, text = "Boton Tres", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonTres))
 
-    self.botonCuatro = Button(self.root, text = "Boton Cuatro", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonCuatro))
+    self.botonCuatro = Button(self.root, text = "Boton Cuatro", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonCuatro))
 
-    self.botonCinco = Button(self.root, text = "Boton Cinco", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonCinco))
+    self.botonCinco = Button(self.root, text = "Boton Cinco", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonCinco))
 
-    self.botonSeis = Button(self.root, text = "Boton Seis", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonSeis))
+    self.botonSeis = Button(self.root, text = "Boton Seis", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonSeis))
 
-    self.botonSiete = Button(self.root, text = "Boton Siete", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonSiete))
+    self.botonSiete = Button(self.root, text = "Boton Siete", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonSiete))
 
-    self.botonOcho = Button(self.root, text = "Boton Ocho", bd = 1, relief = GROOVE, bg = BLUE , fg = "white", font=("Arial", 13),command= lambda: self.cambiarNivel(self.botonOcho))
+    self.botonOcho = Button(self.root, text = "Boton Ocho", bd = 1, relief = GROOVE, bg = self.CBANANA , fg = "white", font=("Arial", self.FUENTE),command= lambda: self.cambiarNivel(self.botonOcho))
 
     self.botones.append(self.botonUno)
     self.botones.append(self.botonDos)
@@ -96,27 +99,27 @@ class VistaMemoriaTrabajoFonologica:
   def pintarBotones(self):
     if self.nivelActual.numNivel in [1,2]:
       self.botonUno.pack()
-      self.botonUno.place(anchor=CENTER, x=(self.X/2)-240, y = 400, width = 150, heigh = 30)
+      self.botonUno.place(anchor=CENTER, x=(self.X/2)-240, y = 400, width = 150, heigh = self.HEIGHB)
       self.botonDos.pack()
-      self.botonDos.place(anchor=CENTER, x=(self.X/2)-80, y = 400, width = 150, heigh = 30)
+      self.botonDos.place(anchor=CENTER, x=(self.X/2)-80, y = 400, width = 150, heigh = self.HEIGHB)
       self.botonTres.pack()
-      self.botonTres.place(anchor=CENTER, x=(self.X/2)+80, y = 400, width = 150, heigh = 30)
+      self.botonTres.place(anchor=CENTER, x=(self.X/2)+80, y = 400, width = 150, heigh = self.HEIGHB)
       self.botonCuatro.pack()
-      self.botonCuatro.place(anchor=CENTER, x=(self.X/2)+240, y = 400, width = 150, heigh = 30)
+      self.botonCuatro.place(anchor=CENTER, x=(self.X/2)+240, y = 400, width = 150, heigh = self.HEIGHB)
     elif self.nivelActual.numNivel in [3,4]:
       self.botonCinco.pack()
-      self.botonCinco.place(anchor=CENTER, x=(self.X/2)-80, y = 450, width = 150, heigh = 30)
+      self.botonCinco.place(anchor=CENTER, x=(self.X/2)-80, y = 450, width = 150, heigh = self.HEIGHB)
       self.botonSeis.pack()
-      self.botonSeis.place(anchor=CENTER, x=(self.X/2)+80, y = 450, width = 150, heigh = 30)
+      self.botonSeis.place(anchor=CENTER, x=(self.X/2)+80, y = 450, width = 150, heigh = self.HEIGHB)
     elif self.nivelActual.numNivel in [5,6]:
       self.botonCinco.pack()
-      self.botonCinco.place(anchor=CENTER, x=(self.X/2)-240, y = 450, width = 150, heigh = 30)
+      self.botonCinco.place(anchor=CENTER, x=(self.X/2)-240, y = 450, width = 150, heigh = self.HEIGHB)
       self.botonSeis.pack()
-      self.botonSeis.place(anchor=CENTER, x=(self.X/2)-80, y = 450, width = 150, heigh = 30)
+      self.botonSeis.place(anchor=CENTER, x=(self.X/2)-80, y = 450, width = 150, heigh = self.HEIGHB)
       self.botonSiete.pack()
-      self.botonSiete.place(anchor=CENTER, x=(self.X/2)+80, y = 450, width = 150, heigh = 30)
+      self.botonSiete.place(anchor=CENTER, x=(self.X/2)+80, y = 450, width = 150, heigh = self.HEIGHB)
       self.botonOcho.pack()
-      self.botonOcho.place(anchor=CENTER, x=(self.X/2)+240, y = 450, width = 150, heigh = 30)
+      self.botonOcho.place(anchor=CENTER, x=(self.X/2)+240, y = 450, width = 150, heigh = self.HEIGHB)
     else:
       print("Pendiente")
 

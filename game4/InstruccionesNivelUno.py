@@ -32,12 +32,12 @@ class InstruccionesNivelUno:
     self.btn5.pack()
     self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
 
-    string1 = "Este nivel tiene 5 rondas, en las cuales el"
-    string2 = "jugador deberá presionar el botón [Z] cuando"
-    string3 = "el Emoji aparezca en alguna de las tres "
-    string4 = "ilustraciones o [-] en caso contrario."
-    string5 = ""
-    string6 = ""
+    string1 = "Este nivel tiene 6 rondas, y 3 tipos de"
+    string2 = "evaluacion, las cuales son FORMA, CANTIDAD"
+    string3 = "y COLOR. El jugador deberá deducir qué se"
+    string4 = "está evaluando en cada ronda. El jugador"
+    string5 = "deberá acumular 10 aciertos consecutivos para"
+    string6 = "pasar a la siguiente ronda."
 
     self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
     self.labelcuatro.config(font=("Arial", 10))

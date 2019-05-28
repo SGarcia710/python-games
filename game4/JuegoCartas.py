@@ -3,9 +3,9 @@ import os
 
 class JuegoCartas:
   NUM_NIVELES = 6
-  MAX_ACIERTOS = 10
+  MAX_ACIERTOS = 2
   RUTA_CONFIG = 'game4/assets/configs/config.txt'
-  RUTA_CARTAS = 'game4/assets/images'
+  RUTA_CARTAS = 'game4/assets/images/'
   def __init__(self):
     self.cartasBase = [] #4
     self.cartasWisconsin = [] #64
@@ -13,12 +13,30 @@ class JuegoCartas:
     self.cargarImagenesWisconsin()
     self.cargarCartasBase()
     self.cargarNiveles()
-  
+    self.nivelActual = 0
+
+  def calcularResultados(self):
+    errores = 0 
+    aciertos = 0
+    for e in self.niveles:
+      errores += e.errores
+      aciertos += e.aciertos
+    return aciertos, errores
+
+  def obtenerNivel(self):
+    if self.nivelActual < len(self.niveles):
+        nivel = self.niveles[self.nivelActual]
+        self.nivelActual += 1
+        return nivel
+    else:
+        return None
+
   def cargarImagenesWisconsin(self):
     for root, dirs, files in os.walk(self.RUTA_CARTAS):
       for ruta in files:
         partes = ruta.split('.')
         partes = partes[0].split(',')
+        ruta = self.RUTA_CARTAS+ruta
         self.cartasWisconsin.append(Carta(partes[0], partes[1], int(partes[2]), ruta))
   
   def cargarCartasBase(self):
@@ -59,6 +77,7 @@ class Nivel:
     
   def cargarCarta(self):
     self.carta = self.cartasWisconsin[numeroAleatorio(0, len(self.cartasWisconsin)-1)]
+    return self.carta
     
   def validarJugada(self, ruta):
     for carta in self.cartasWisconsin:
@@ -78,9 +97,6 @@ class Nivel:
       
   def ganoNivel(self):
     return True if self.contAciertos == JuegoCartas.MAX_ACIERTOS else False
-      
-      
-    
 
 class Carta: 
   F_TRIANGULO = "triangulo"
@@ -93,7 +109,6 @@ class Carta:
   C_VERDE = "verde"
   C_AZUL = "azul"
 
-<<<<<<< HEAD
   CN_UNO = "uno"
   CN_DOS = "dos"
   CN_TRES = "tres"
@@ -103,15 +118,3 @@ class Carta:
     self.color = color
     self.cantidad = cantidad
     self.ruta = ruta
-=======
-  CN_UNO = 1
-  CN_DOS = 2
-  CN_TRES = 3
-  CN_CUATRO = 4
-    def __init__(self, forma, color, cantidad):
-      self.forma = forma
-      self.color = color
-      self.cantidad = cantidad
-      self.ruta
-    
->>>>>>> 9721d03413c5735c6531898f59d7f4d357e2fcec
