@@ -35,12 +35,13 @@ class Carta:
   C_VERDE = "verde"
   C_AZUL = "azul"
 
-  CN_UNO = "uno"
-  CN_DOS = "dos"
-  CN_TRES = "tres"
-  CN_CUATRO = "cuatro"
+  CN_UNO = 1
+  CN_DOS = 2
+  CN_TRES = 3
+  CN_CUATRO = 4
     def __init__(self, forma, color, cantidad):
       self.forma = forma
       self.color = color
       self.cantidad = cantidad
       self.ruta
+    

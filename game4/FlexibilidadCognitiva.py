@@ -41,11 +41,11 @@ class FlexibilidadCognitiva:
 
   def iniciarInstruccionesUno(self):
     self.rootWindow.withdraw()
-    globos = InstruccionesNivelUno(self.rootWindow)
+    cartas = InstruccionesNivelUno(self.rootWindow)
     
   def iniciarInstruccionesDos(self):
     self.rootWindow.withdraw()
-    letras = InstruccionesNivelDos(self.rootWindow)
+    numeros = InstruccionesNivelDos(self.rootWindow)
 
   def volverMenu(self):
     self.rootWindow.destroy()
