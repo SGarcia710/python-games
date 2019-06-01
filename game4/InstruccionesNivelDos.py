@@ -1,7 +1,6 @@
 from tkinter import *
 from game4.utilities import *
-# from game4.VistaNumeros import *
-# from game4.JuegoNumeros import *
+from game4.VistaNumeros import *
 
 class InstruccionesNivelDos:
   def __init__(self, window):
@@ -32,12 +31,12 @@ class InstruccionesNivelDos:
     self.btn5.pack()
     self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
 
-    string1 = "Este nivel tiene 6 rondas, en las cuales el"
-    string2 = "jugador deberá presionar el botón [Z] cuando"
-    string3 = "la letra corresponda a la inicial de alguno de"
-    string4 = "los elementos contenidos en cualquiera de las"
-    string5 = "tres ilustraciones o [-] en caso contrario."
-    string6 = ""
+    string1 = "Este nivel consta de 3 rondas. En cada ronda el"
+    string2 = "jugador deberá determinar que operación aritmética"
+    string3 = "(suma, resta, multipliacion) se está evaluando."
+    string4 = "Para ello el jugador tendrá intentos ilimitados"
+    string5 = "y solamente al completar 10 aciertos consecutivos"
+    string6 = "podrá avanzar a la siguiente ronda."
 
     self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
     self.labelcuatro.config(font=("Arial", 10))
@@ -68,7 +67,7 @@ class InstruccionesNivelDos:
   
   def iniciarVista(self):
     self.rootWindow.destroy()
-    # dos = VistaJuegoVelPro(self.parentWindow, VelocidadProcesamiento.JUEGO_DOS)
+    dos = VistaNumeros(self.parentWindow)
   
   def volverMenu(self):
     self.rootWindow.destroy()
