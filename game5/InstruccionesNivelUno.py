@@ -1,7 +1,6 @@
 from tkinter import *
-from game4.utilities import *
-from game4.VistaCartas import *
-# from game4.JuegoCartas import *
+from game5.utilities import *
+from game5.Vista import *
 
 class InstruccionesNivelUno:
   def __init__(self, window):
@@ -24,20 +23,23 @@ class InstruccionesNivelUno:
     self.title.pack()
     self.title.place(anchor=CENTER, x=XY/2, y= (XY/8))
     
-    self.btn1 = Button(self.rootWindow, text="INICIAR NIVEL", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarVista)
+    self.btn1 = Button(self.rootWindow, text="INICIAR NIVEL", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = lambda: self.iniciarVista(1))
     self.btn1.pack()
     self.btn1.place(anchor=CENTER, x = XY-55, y = XY-17, width = 105) 
+    self.btn2 = Button(self.rootWindow, text="INICIAR PRUEBA", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = lambda: self.iniciarVista(0))
+    self.btn2.pack()
+    self.btn2.place(anchor=CENTER, x = XY-170, y = XY-17, width = 120) 
 
     self.btn5 = Button(self.rootWindow, text="Atras", bg = DARK, fg = "white", relief = GROOVE, command = self.volverMenu)
     self.btn5.pack()
     self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
 
-    string1 = "Este nivel tiene 6 rondas, y 3 tipos de"
-    string2 = "evaluacion, las cuales son FORMA, CANTIDAD"
-    string3 = "y COLOR. El jugador deberá deducir qué se"
-    string4 = "está evaluando en cada ronda. El jugador"
-    string5 = "deberá acumular 10 aciertos consecutivos para"
-    string6 = "pasar a la siguiente ronda."
+    string1 = "Este nivel consta de 3 rondas. En cada ronda el"
+    string2 = "jugador deberá determinar que operación aritmética"
+    string3 = "(suma, resta, multipliacion) se está evaluando."
+    string4 = "Para ello el jugador tendrá intentos ilimitados"
+    string5 = "y solamente al completar 10 aciertos consecutivos"
+    string6 = "podrá avanzar a la siguiente ronda."
 
     self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
     self.labelcuatro.config(font=("Arial", 10))
@@ -66,10 +68,10 @@ class InstruccionesNivelUno:
 
     self.rootWindow.mainloop()
   
-  def iniciarVista(self):
+  def iniciarVista(self, tipoJuego):
     self.rootWindow.destroy()
-    uno = VistaCartas(self.parentWindow)
-
+    dos = Vista(self.parentWindow, tipoJuego)
+  
   def volverMenu(self):
     self.rootWindow.destroy()
     self.parentWindow.deiconify()

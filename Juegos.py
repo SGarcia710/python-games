@@ -4,6 +4,7 @@ from game1.ControlInhibitorio import ControlInhibitorio
 from game2.VelocidadProcesamiento import VelocidadProcesamiento
 from game3.MemoriaTrabajoFonologica import MemoriaTrabajoFonologica
 from game4.FlexibilidadCognitiva import FlexibilidadCognitiva
+from game5.MemoriaTrabajoBioespacial import MemoriaTrabajoBioespacial
 
 class Juegos:
   def __init__(self):
@@ -27,7 +28,7 @@ class Juegos:
     title.place(anchor=CENTER, x=XY/2, y= (XY/4)-35)
 
     #Sapo
-    btn5 = Button(self.rootWindow, text="Memoria de Trabajo Bioespacial", bg = BANANA, fg = "white", relief = GROOVE, font=("Arial", 11))
+    btn5 = Button(self.rootWindow, text="Memoria de Trabajo Bioespacial", bg = BANANA, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarMemTrabBio)
     btn5.pack()
     btn5.place(anchor=CENTER, x = (XY/2), y = (XY/2)-35-35, width = BTNSIZE )
     #Audios
@@ -68,3 +69,7 @@ class Juegos:
   def iniciarFlexCogni(self):
     self.rootWindow.withdraw()
     fc = FlexibilidadCognitiva(self.rootWindow)
+
+  def iniciarMemTrabBio(self):
+    self.rootWindow.withdraw()
+    fc = MemoriaTrabajoBioespacial(self.rootWindow)
