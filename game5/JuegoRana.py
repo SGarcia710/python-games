@@ -26,6 +26,7 @@ class JuegoRana:
       return nivel
     else:
       return None
+      
   def obtenerNivelPrueba(self):
     if self.nivelPruebaActual < len(self.nivelesPrueba):
       nivel = self.nivelesPrueba[self.nivelPruebaActual]

@@ -15,9 +15,7 @@ class Vista:
   X = 1000
   Y = 700
   def __init__(self, parentWindow, tipoJuego):
-    print("hasta aqui llego")
     self.juego = JuegoRana(tipoJuego)
-    print("Aqui llegue?")
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     self.root = Toplevel()
     self.parentWindow = parentWindow
@@ -44,14 +42,15 @@ class Vista:
     self.label1.config(font=("Righteous", 30), bg = "white")
     self.label1.pack()
     self.label1.place(anchor=CENTER, x=self.X/2, y= 50)
-    
-    # self.pintarNivel()
+
+    self.pintarNivel()
 
     self.root.mainloop()
 
-  # def pintarNivel(self):
-
-
+  def pintarNivel(self):
+    for fila in self.juego.hojas:
+      for columna in fila:
+        
   # def crearResultados(self):
   #   segundos = self.segundos % 60
   #   minutos = int(self.segundos / 60)
