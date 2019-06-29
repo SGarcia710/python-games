@@ -84,16 +84,6 @@ class VistaCartas:
     self.label4.config(font=("Righteous", 20), bg = "white")
     self.label4.pack()
     self.label4.place(anchor=CENTER, x=self.X-130, y= 500)
-    #Errores Totales
-    # self.label3 = Label(self.root, text = "Errores: ")
-    # self.label3.config(font=("Righteous", 30), bg = "white")
-    # self.label3.pack()
-    # self.label3.place(anchor=CENTER, x=self.X-200, y= 550)
-    
-    # self.label4 = Label(self.root, text = "0")
-    # self.label4.config(font=("Righteous", 30), bg = "white")
-    # self.label4.pack()
-    # self.label4.place(anchor=CENTER, x=self.X-90, y= 550)
 
     self.pintarNivel()
 
