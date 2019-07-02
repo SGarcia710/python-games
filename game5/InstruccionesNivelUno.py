@@ -18,7 +18,7 @@ class InstruccionesNivelUno:
 
     self.rootWindow.geometry("+{}+{}".format(self.positionRight, self.positionDown))
 
-    self.title = Label(self.rootWindow, text = "INSTRUCCIONES NIVEL 1", bg = "white")
+    self.title = Label(self.rootWindow, text = "INSTRUCCIONES", bg = "white")
     self.title.config(font=("Righteous", 15))
     self.title.pack()
     self.title.place(anchor=CENTER, x=XY/2, y= (XY/8))
@@ -34,12 +34,12 @@ class InstruccionesNivelUno:
     self.btn5.pack()
     self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
 
-    string1 = "Este nivel consta de 3 rondas. En cada ronda el"
-    string2 = "jugador deberá determinar que operación aritmética"
-    string3 = "(suma, resta, multipliacion) se está evaluando."
-    string4 = "Para ello el jugador tendrá intentos ilimitados"
-    string5 = "y solamente al completar 10 aciertos consecutivos"
-    string6 = "podrá avanzar a la siguiente ronda."
+    string1 = "Este juego consiste en ver y recordar el recorrido"
+    string2 = "que hace la rana. El jugador deberá presionar los"
+    string3 = "nenufares(hojas) correspondientes al camino"
+    string4 = "correcto. El camino debe seguir el orden mostrado"
+    string5 = " al inicio de cada ronda, de lo contrario, cada"
+    string6 = "paso que no siga el orden, será un error."
 
     self.labelcuatro = Label (self.rootWindow, text = string1, bg = "white")
     self.labelcuatro.config(font=("Arial", 10))

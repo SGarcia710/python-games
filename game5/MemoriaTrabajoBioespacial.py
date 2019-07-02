@@ -20,17 +20,13 @@ class MemoriaTrabajoBioespacial:
 
     self.title = Label(self.rootWindow, text = "MENÚ MEM. TRAB. BIOESPACIAL", bg = "white")
     self.title.config(font=("Righteous", 14))
-    self.title.pack()
     self.title.place(anchor=CENTER, x=XY/2, y= (XY/4))
 
-    self.btn1 = Button(self.rootWindow, text="NIVEL 1", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarInstruccionesUno)
-    self.btn1.pack()
-    self.btn1.place(anchor=CENTER, x = (XY/2), y = (XY/2)-35, width = BTNSIZE) 
+    self.btn1 = Button(self.rootWindow, text="INICIAR JUEGO", bg = BLUE, fg = "white", relief = GROOVE, font=("Arial", 11), command = self.iniciarInstruccionesUno)
+    self.btn1.place(anchor=CENTER, x = (XY/2), y = XY/2, width = BTNSIZE) 
     self.btn4 = Button(self.rootWindow, text="Logs", bg = DARK, fg = "white", relief = GROOVE, command = abrirArchivo)
-    self.btn4.pack()
     self.btn4.place(anchor=CENTER, x = XY-30, y = XY-17, width = 50 )
     self.btn5 = Button(self.rootWindow, text="Menú", bg = DARK, fg = "white", relief = GROOVE, command = self.volverMenu)
-    self.btn5.pack()
     self.btn5.place(anchor=CENTER, x = 30, y = XY-17, width = 50 )
 
     self.rootWindow.mainloop()

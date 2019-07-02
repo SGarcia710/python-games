@@ -13,7 +13,8 @@ class Vista:
   Y = 740
   ESPERA = 1 #cantidad de segundos de espera
   def __init__(self, parentWindow, tipoJuego):
-    self.juego = JuegoRana(tipoJuego)
+    self.tipoJuego = tipoJuego
+    self.juego = JuegoRana(self.tipoJuego)
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     self.root = Toplevel()
     self.parentWindow = parentWindow
@@ -24,8 +25,9 @@ class Vista:
     self.terminado = False
     self.segundos = 0
     self.root.resizable(width=False, height=False)
-    # self.hilo2 = threading.Thread(target=self.ejecutarCronometro)
+    self.hilo2 = threading.Thread(target=self.ejecutarCronometro)
     # self.hilo2.start()
+    self.ejecutandoHilo = False
     
     windowWidth = self.root.winfo_reqwidth()
     windowHeight = self.root.winfo_reqheight()
@@ -149,7 +151,6 @@ class Vista:
     self.ranaImage = None
     self.ranaOverImage = None
     self.rana = Label(self.root, bd = 0, bg = "white")
-    # self.root.wm_attributes('-transparentcolor', self.root['bg'])
     self.pintarNivel()
 
     self.root.mainloop()
@@ -163,8 +164,12 @@ class Vista:
       self.pintarRonda()
 
   def presionarBoton(self, hoja):
-    self.pintarNivel()
-  
+    self.nivelActual.calcularJugada(hoja.x, hoja.y)
+    if not self.nivelActual.hayMasMovimientos():
+      self.ejecutandoHilo = False
+      self.nivelActual.actualizarSegundos(self.segundos)
+      self.pintarNivel()
+
   def pintarRonda(self):
     self.label1.configure(text = "Nivel "+ str(self.nivelActual.numNivel+1))
     if self.nivelActual.tipoNivel == self.nivelActual.TIPO_NIVEL_PROGRESIVO:
@@ -193,28 +198,21 @@ class Vista:
         self.rana.place(anchor=CENTER, x = self.X/2, y = 660)
       else:
         self.rana.place(anchor=CENTER, x = self.X/2, y = 90)
+      self.segundos = 0
+      self.ejecutandoHilo = True
+      self.hilo2 = threading.Thread(target=self.ejecutarCronometro)
+      self.hilo2.start()      
+
+  def crearResultados(self):
+    if self.tipoJuego == 1:
+      resultadosRondas = self.juego.generarResultados()
+      mbox.showinfo("Juego completado", "Visualiza los resultados en los logs.")
+      stringResultado = "Fecha: "+self.fechaInicio+"\n"+resultadosRondas+"\n"
+      guardarLog(stringResultado)
+    self.root.destroy()
+    self.parentWindow.deiconify()
     
-
-
-
-  # def crearResultados(self):
-  #   segundos = self.segundos % 60
-  #   minutos = int(self.segundos / 60)
-  #   aciertos, fallos = self.juego.calcularResultados()
-  #   stringMBOX = "Total aciertos: "+str(aciertos)+". \nTotal Errores: "+str(fallos)+"\nTiempo transcurrido: "+str(minutos)+"m:"+str(segundos)+"s."
-  #   mbox.showinfo("Juego completado", stringMBOX)
-  #   stringResultado = "[Nivel 1] Fecha: "+self.fechaInicio+", Aciertos: "+str(aciertos)+", Errores: "+str(fallos)+", Minutos: "+str(minutos)+", Segundos: "+str(segundos)+"\n"
-  #   guardarLog(stringResultado)
-  #   self.root.destroy()
-  #   self.parentWindow.deiconify()
-
-  # def presionarBoton(self, ruta):
-
-  # def iniciarHilo(self):
-  #   self.hilo2 = threading.Thread(target=self.reproducir)
-  #   self.hilo2.start()
-    
-  # def ejecutarCronometro(self):
-  #   while(not self.terminado):
-  #     time.sleep(1)
-  #     self.segundos += 1
+  def ejecutarCronometro(self):
+    while self.ejecutandoHilo:
+      time.sleep(1)
+      self.segundos += 1

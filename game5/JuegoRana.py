@@ -18,6 +18,14 @@ class JuegoRana:
     else:
       self.cargarNiveles()
 
+  def generarResultados(self):
+    resultadosRondas = ""
+    for nivel in self.niveles:
+      segundos = nivel.segundos % 60
+      minutos = int(nivel.segundos / 60)
+      resultadosRondas += "\tRonda "+str(nivel.numNivel)+": Aciertos: "+str(nivel.aciertos)+", Errores: "+str(nivel.errores)+", Tiempo: "+str(minutos)+":"+str(segundos)+"m.\n"
+    return resultadosRondas
+
   def obtenerNivel(self):
     if self.nivelActual < len(self.niveles):
       nivel = self.niveles[self.nivelActual]
@@ -52,7 +60,7 @@ class JuegoRana:
       while not termino:
         x, y = numeroAleatorio(1, self.NUM_HOJAS-2), numeroAleatorio(0, self.NUM_HOJAS-1)
         miHoja = self.hojas[x][y]
-        if len(camino) == numHojasNivel:
+        if len(camino) == numHojasNivel-1:
           termino = True
         elif miHoja not in camino:
           camino.append(miHoja)
@@ -83,7 +91,7 @@ class JuegoRana:
       while not termino:
         x, y = numeroAleatorio(1, self.NUM_HOJAS-2), numeroAleatorio(0, self.NUM_HOJAS-1)
         miHoja = self.hojas[x][y]
-        if len(camino) == numHojasNivel:
+        if len(camino) == numHojasNivel-1:
           termino = True
         elif miHoja not in camino:
           camino.append(miHoja)
@@ -112,15 +120,16 @@ class Nivel:
     self.tipoNivel = tipoNivel
     self.indiceMovimiento = 0
 
-  def clickBoton(self, boton):
-    if self.camino[self.numPaso] == boton:
+  def hayMasMovimientos(self):
+    return self.numPaso < len(self.camino)
+
+  def calcularJugada(self, x, y):
+    movimiento = self.camino[self.numPaso]
+    if movimiento.x == x and movimiento.y == y:
       self.aciertos += 1
     else:
       self.errores += 1
     self.numPaso += 1
-
-  def hayMasMovimientos(self):
-    return self.numPaso < len(self.camino)
 
   def obtenerMovimiento(self):
     if self.indiceMovimiento < len(self.camino):
@@ -129,6 +138,10 @@ class Nivel:
       return movimiento
     else:
       return None
+
+  def actualizarSegundos(self, segundos):
+    self.segundos = segundos
+  
 
 class Hoja:
   def __init__(self, x, y, ruta):
