@@ -1,5 +1,6 @@
 from tkinter import *
 from game6.utilities import *
+from game6.JuegoLaberinto import *
 from game6.InstruccionesNivelUno import *
 
 class PlaneacionYOrganizacion:
@@ -9,6 +10,7 @@ class PlaneacionYOrganizacion:
     self.rootWindow.title("Planeación y Organización")
     self.rootWindow.config(heigh=XY, width=XY)
     self.rootWindow.configure(bg='white')
+    self.juegoLaberinto = JuegoLaberinto()
 
     self.windowWidth = self.rootWindow.winfo_reqwidth()
     self.windowHeight = self.rootWindow.winfo_reqheight()
