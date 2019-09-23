@@ -5,6 +5,7 @@ import time, threading
 from tkinter import PhotoImage
 from datetime import datetime, timedelta
 from game6.utilities import *
+from game6.JuegoLaberinto import *
 import os
 import pygame
 
@@ -14,7 +15,7 @@ class VistaLaberinto:
   Y = 740
   ESPERA = 1 #cantidad de segundos de espera
   def __init__(self, parentWindow):
-    # self.juego = JuegoLaberinto()
+    self.juego = JuegoLaberinto()
     self.fechaInicio = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     self.root = Toplevel()
     self.parentWindow = parentWindow
