@@ -46,7 +46,7 @@ class VistaLaberinto:
     self.label1.pack()
     self.label1.place(anchor=CENTER, x=self.X/2, y= 25)
 
-    self.img1 = PhotoImage(file="game6/assets/images/mapa10.png")
+    self.img1 = PhotoImage(file="game6/assets/images/mapa5.png")
     self.mapa = Label(self.root, image=self.img1)
     self.mapa.pack()
     self.mapa.place(anchor=CENTER, x = self.X/2, y = self.Y/2)
