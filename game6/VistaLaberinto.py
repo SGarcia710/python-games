@@ -7,6 +7,7 @@ from game6.utilities import *
 from game6.JuegoLaberinto import *
 import os
 import pygame
+from ctypes import *
 
 class VistaLaberinto: 
   # tamaño de la ventana
@@ -27,12 +28,11 @@ class VistaLaberinto:
     self.segundos = 0
     self.movible = False
     self.root.resizable(width=False, height=False)
-    # self.hilo2 = threading.Thread(target=self.ejecutarCronometro)
-    # self.hilo2.start()
+    self.hilo2 = threading.Thread(target=self.ejecutarCronometro)
+    self.hilo2.start()
     self.hilo3 = threading.Thread(target=self.mouseTracking)
     self.hilo3.start()
     self.running = True
-    self.ejecutandoHilo = False
     
     windowWidth = self.root.winfo_reqwidth()
     windowHeight = self.root.winfo_reqheight()
@@ -66,7 +66,7 @@ class VistaLaberinto:
     self.nivelActual = self.juego.obtenerNivel()
     if self.nivelActual is None: 
       self.terminado = True
-      # self.crearResultados()
+      self.crearResultados()
     else:
       self.pintarRonda()
 
@@ -77,11 +77,11 @@ class VistaLaberinto:
     self.avatar.place(anchor=CENTER, x = self.nivelActual.xInicial, y = self.nivelActual.yInicial)
 
   def crearResultados(self):
-    if self.tipoJuego == 1:
-      resultadosRondas = self.juego.generarResultados()
-      mbox.showinfo("Juego completado", "Visualiza los resultados en los logs.")
-      stringResultado = "Fecha: "+self.fechaInicio+"\n"+resultadosRondas+"\n"
-      guardarLog(stringResultado)
+    # if self.tipoJuego == 1:
+    resultadosRondas = self.juego.generarResultados()
+    mbox.showinfo("Juego completado", "Visualiza los resultados en los logs.")
+    stringResultado = "Fecha: "+self.fechaInicio+" "+resultadosRondas+"\n"
+    guardarLog(stringResultado)
     self.root.destroy()
     self.parentWindow.deiconify()
   
@@ -103,9 +103,11 @@ class VistaLaberinto:
           self.avatar.place(anchor= CENTER, x = abs_coord_x, y = abs_coord_y)
         if( self.nivelActual.calcularPos(abs_coord_x, abs_coord_y) ):
           self.movible = False
+          self.nivelActual.calcularTiempo(self.segundos)
+          self.segundos = 0
           self.pintarNivel()
 
   def ejecutarCronometro(self):
-    while self.ejecutandoHilo:
+    while not self.terminado:
       time.sleep(1)
       self.segundos += 1

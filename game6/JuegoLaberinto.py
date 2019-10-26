@@ -8,6 +8,12 @@ class JuegoLaberinto:
     self.niveles = []
     self.nivelActual = 0
     self.cargarNiveles()
+  
+  def generarResultados(self):
+    resultados = ""
+    for nivel in self.niveles:
+      resultados += "[Ronda "+str(nivel.numNivel + 1)+"] errores: "+str(nivel.errores)+" tiempo: "+str(nivel.tiempo) + " segundos "
+    return resultados
 
   def obtenerNivel(self):
     if self.nivelActual < len(self.niveles):
@@ -90,6 +96,11 @@ class Nivel:
     self.xInicial = xInicial
     self.yInicial = yInicial
     self.estado = 0 #Estados: 0 => Libre, 1 => Errado, 2 => Completado
+    self.tiempo = 0
+
+  def calcularTiempo(self, tiempo):
+    print("Tiempoooooo", str(tiempo))
+    self.tiempo = tiempo
   
   def calcularPos(self, x, y):
     #primero se verifica si está en area Errado
@@ -113,7 +124,7 @@ class Nivel:
 
 
   def calcularInterseccion(self, x, y, coord):
-    print( "min: {},{} - max: {},{}.\nuser: {},{}".format(coord.minX,coord.minY,coord.maxX,coord.maxY,x,y) )
+    # print( "min: {},{} - max: {},{}.\nuser: {},{}".format(coord.minX,coord.minY,coord.maxX,coord.maxY,x,y) )
     if ( (x > coord.minX and x < coord.maxX) and (y > coord.maxY and y < coord.minY) ) :
       return True
     else:
