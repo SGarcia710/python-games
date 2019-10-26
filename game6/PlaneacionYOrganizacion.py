@@ -20,7 +20,7 @@ class PlaneacionYOrganizacion:
 
     self.rootWindow.geometry("+{}+{}".format(self.positionRight, self.positionDown))
 
-    self.title = Label(self.rootWindow, text = "MENÚ PLANEACIÓN Y ORGANIZACIÓN", bg = "white")
+    self.title = Label(self.rootWindow, text = "MENÚ PLAN. Y ORG.", bg = "white")
     self.title.config(font=("Righteous", 14))
     self.title.place(anchor=CENTER, x=XY/2, y= (XY/4))
 
