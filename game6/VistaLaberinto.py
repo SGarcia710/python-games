@@ -20,7 +20,7 @@ class VistaLaberinto:
     self.parentWindow = parentWindow
     self.root.title("PLANEACIÓN Y ORGANIZACIÓN")
     self.root.config(heigh=self.Y, width=self.X)
-    self.user = windll.user32
+    # self.user = windll.user32
     self.root.configure(bg='white')
     self.nivelActual = None
     self.terminado = False

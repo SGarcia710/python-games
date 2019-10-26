@@ -9,6 +9,14 @@ class JuegoLaberinto:
     self.nivelActual = 0
     self.cargarNiveles()
 
+  def generarResultados(self):
+    resultadosRondas = ""
+    for nivel in self.niveles:
+      segundos = nivel.segundos % 60
+      minutos = int(nivel.segundos / 60)
+      resultadosRondas += "\tRonda "+str(nivel.numNivel)+": Aciertos: "+str(nivel.aciertos)+", Errores: "+str(nivel.errores)+", Tiempo: "+str(minutos)+":"+str(segundos)+"m.\n"
+    return resultadosRondas
+
   def obtenerNivel(self):
     if self.nivelActual < len(self.niveles):
       nivel = self.niveles[self.nivelActual]
@@ -40,7 +48,7 @@ class JuegoLaberinto:
         coord2 = coord2.replace(']', '')
         coord2 = coord2.split(',')
         xMax = coord2[0]
-        xMax = xMax.replace('(', '')
+        xMax = xMax.replace('(', '') 
         xMax = int(xMax)
         yMax = coord2[1]
         yMax = yMax.replace(')', '')
